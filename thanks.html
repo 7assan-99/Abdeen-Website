@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شكراً لتواصلكم | المستشار محمد عبدالله عابدين</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/mobile.css" media="(max-width: 768px)">
+    <style>
+        .thank-you-container {
+            text-align: center;
+            padding: 100px 20px;
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .thank-you-icon {
+            font-size: 5rem;
+            color: var(--gold);
+            margin-bottom: 30px;
+        }
+
+        .thank-you-title {
+            color: var(--gold);
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .thank-you-message {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 800px;
+        }
+
+        .redirect-message {
+            font-size: 1rem;
+            margin-top: 30px;
+            color: var(--light-gold);
+        }
+
+        .home-button {
+            background-color: var(--gold);
+            color: var(--dark-blue);
+            border: none;
+            padding: 12px 30px;
+            font-size: 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        .home-button:hover {
+            background-color: var(--light-gold);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Language Toggle Bar -->
+    <header class="language-bar" dir="ltr">
+        <div class="container">
+            <div class="logo">
+                <img src="images/logo.png" alt="شعار المستشار محمد عبدالله عابدين">
+            </div>
+            <div class="language-toggle">
+                <button class="lang-btn active" id="arabic-btn">العربية</button>
+                <button class="lang-btn" id="english-btn">English</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Thank You Content -->
+    <main>
+        <div class="thank-you-container">
+            <i class="fas fa-check-circle thank-you-icon"></i>
+            
+            <h1 class="thank-you-title ar-text">شكراً لتواصلكم</h1>
+            <h1 class="thank-you-title en-text">Thank You for Your Message</h1>
+            
+            <p class="thank-you-message ar-text">
+                تم استلام استشارتكم بنجاح. سيقوم فريقنا بالرد عليكم في أقرب وقت ممكن.
+            </p>
+            <p class="thank-you-message en-text">
+                Your consultation has been successfully received. Our team will respond to you as soon as possible.
+            </p>
+            
+            <a href="index.html" class="home-button ar-text">العودة للصفحة الرئيسية</a>
+            <a href="index.html" class="home-button en-text">Return to Homepage</a>
+            
+            <p class="redirect-message ar-text">
+                سيتم تحويلكم تلقائياً إلى الصفحة الرئيسية خلال <span id="countdown">10</span> ثوانٍ
+            </p>
+            <p class="redirect-message en-text">
+                You will be automatically redirected to the homepage in <span id="countdown-en">10</span> seconds
+            </p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="copyright ar-text">
+                    &copy; 2025 المستشار محمد عبدالله عابدين. جميع الحقوق محفوظة.
+                </div>
+                <div class="copyright en-text">
+                    &copy; 2025 Consultant Mohammed Abdullah Abdeen. All rights reserved.
+                </div>
+                <div class="social-links">
+                    <a href="https://wa.me/96567070133" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    <a href="mailto:info@abdeen-arbitration.com"><i class="fas fa-envelope"></i></a>
+                    <a href="https://www.instagram.com/almustadhar.arbitration" target="_blank"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Countdown timer and redirect
+        document.addEventListener('DOMContentLoaded', function() {
+            let seconds = 10;
+            const countdownElement = document.getElementById('countdown');
+            const countdownElementEn = document.getElementById('countdown-en');
+            
+            // Update countdown every second
+            const countdownInterval = setInterval(function() {
+                seconds--;
+                
+                // Update both language countdown displays
+                countdownElement.textContent = seconds;
+                countdownElementEn.textContent = seconds;
+                
+                // When countdown reaches 0, redirect to homepage
+                if (seconds <= 0) {
+                    clearInterval(countdownInterval);
+                    window.location.href = 'index.html';
+                }
+            }, 1000);
+            
+            // Language toggle functionality (reusing from main script)
+            const arabicBtn = document.getElementById('arabic-btn');
+            const englishBtn = document.getElementById('english-btn');
+            
+            arabicBtn.addEventListener('click', function() {
+                document.body.classList.remove('english');
+                document.body.setAttribute('dir', 'rtl');
+                arabicBtn.classList.add('active');
+                englishBtn.classList.remove('active');
+            });
+            
+            englishBtn.addEventListener('click', function() {
+                document.body.classList.add('english');
+                document.body.setAttribute('dir', 'ltr');
+                arabicBtn.classList.remove('active');
+                englishBtn.classList.add('active');
+            });
+        });
+    </script>
+</body>
+
+</html>
